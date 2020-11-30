@@ -9,7 +9,11 @@
 
 <script>
 export default {
-  name: "ShMarquee"
+  name: "ShMarquee",
+  props: {},
+  data() {
+    return {}
+  }
 }
 </script>
 
