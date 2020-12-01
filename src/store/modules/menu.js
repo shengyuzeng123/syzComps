@@ -1,6 +1,5 @@
 const state = {
-    name: 'syz',
-    age: 12
+    curRoute:''
 }
 
 const mutations = {
@@ -8,16 +7,9 @@ const mutations = {
         state.name = data
     }
 }
-
 const actions = {
-    async changeNameActions({
-        commit,
-        state
-    }, data) {
-        console.log(123)
-    }
-}
 
+}
 const getData = () => {
     setTimeout(() => {
         return '123'

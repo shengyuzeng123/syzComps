@@ -1,10 +1,8 @@
-/*组件注册(公共)*/
-import ShMarquee from "@/components/common/ShMarquee";
-import ShRichText from "@/components/common/ShRichText";
+/*组件注册*/
+import ConfBar from "@/components/layout/ConfBar";
 
 const components = [
-  ShMarquee,
-  ShRichText
+  ConfBar
 ];
 
 const install = Vue => {
