@@ -1,0 +1,18 @@
+/*全局样式*/
+@theme-color: #1b8ebc; //主题色
+
+.margin(100);
+.margin(@n) when (@n>=0) {
+  .ml-@{n} {
+    margin-left: @n + 0px !important;
+  }
+  .mr-@{n} {
+    margin-right: @n + 0px !important;
+  }
+  .mt-@{n} {
+    margin-top: @n + 0px !important;
+  }
+  .mb-@{n} {
+    margin-bottom: @n + 0px !important;
+  }
+}

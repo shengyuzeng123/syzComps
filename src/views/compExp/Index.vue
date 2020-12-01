@@ -1,13 +1,15 @@
 <template>
   <div>
-    盛宇增的公共组件库
+    <router-view></router-view>
   </div>
 </template>
+
 <script>
 export default {
-  name: "Home"
+  name: "Index"
 }
 </script>
-<style>
+
+<style scoped>
 
 </style>

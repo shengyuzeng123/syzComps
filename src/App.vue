@@ -1,32 +1,91 @@
 <template>
   <div id="app">
-    <router-view/>
+    <el-container>
+      <el-container>
+        <el-aside width="240px">
+          <Sidebar></Sidebar>
+        </el-aside>
+        <el-main>
+          <div class="bread-crumbs">
+            <div class="bread-crumbs-item" v-for="(item,index) in breadCrumbs" :key="item.name">
+              <el-button type="text" :disabled="item.disabled">
+                {{ item.meta.title }}
+              </el-button>
+            </div>
+          </div>
+          <router-view/>
+        </el-main>
+      </el-container>
+    </el-container>
   </div>
 </template>
+<script>
+import Sidebar from "@/components/layout/Sidebar";
 
-<style>
-body{
+export default {
+  name: 'app',
+  components: {
+    Sidebar
+  },
+  data() {
+    return {
+      // 面包屑数据
+      breadCrumbs: []
+    }
+  },
+  watch: {
+    $route() {
+      let {name, matched} = this.$route;
+      this.breadCrumbs = matched.map(item => {
+        item.disabled = item.name === name;
+        return item
+      })
+    }
+  },
+  mounted() {
+
+  }
+}
+</script>
+<style lang="less">
+body {
   padding: 0;
   margin: 0;
 }
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-}
 
-#nav {
-  padding: 30px;
-}
+  .el-container {
+    height: 100vh;
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+    .el-main {
+      padding: 0;
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+      .bread-crumbs {
+        padding: 0 20px;
+        border-bottom: 1px solid #d6d6d6;
+
+        .bread-crumbs-item {
+          position: relative;
+          display: inline-block;
+          margin-right: 20px;
+
+          &:not(:last-child) {
+            &:after {
+              content: "/";
+              position: absolute;
+              right: -12.9px;
+              top: 10.4px;
+              opacity: 0.4;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 </style>

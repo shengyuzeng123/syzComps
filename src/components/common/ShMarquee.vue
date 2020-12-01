@@ -1,5 +1,5 @@
 <!--
-  跑马灯组件
+  文字跑马灯组件
   @time 2020-11-30
 -->
 <template>
@@ -47,6 +47,9 @@ export default {
     }
   },
   methods: {
+    /**
+     * 初始化
+     */
     init() {
       this.marqueeStop();
       if (!this.content) return false;
@@ -65,6 +68,9 @@ export default {
       }, that.duration);
       this.marqueeTimer = setInterval(this.marqueeMove, this.duration)
     },
+    /**
+     * 开始运行
+     */
     marqueeMove() {
       let marquee = this.$refs[this.customClass];
       let marqueeX = parseInt(marquee.style.marginLeft.substring(0, marquee.style.marginLeft.indexOf("px")));
@@ -85,12 +91,21 @@ export default {
         marquee.style.marginLeft = marqueeX - this.speedX + "px"
       }
     },
+    /**
+     * 停止运行
+     */
     marqueeStop() {
       this.marqueeTimer && clearInterval(this.marqueeTimer)
     }
   },
   watch: {
+    // 监听内容变化
     content() {
+      this.$nextTick(() => {
+        this.init()
+      })
+    },
+    speed() {
       this.$nextTick(() => {
         this.init()
       })
@@ -113,6 +128,7 @@ export default {
 .sh-marquee-wrap {
   white-space: nowrap;
   overflow: hidden;
+  text-align: left;
 }
 
 .sh-marquee {

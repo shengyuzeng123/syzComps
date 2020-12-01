@@ -6,9 +6,9 @@ export default {
     for (let key in obj) {
       if (obj.hasOwnProperty(key)) {
         if (obj[key] && typeof obj[key] === 'object') {
-          obj_clone = this.deepCopy(obj[key])
+          obj_clone[key] = this.deepCopy(obj[key])
         } else {
-          obj_clone = obj[key]
+          obj_clone[key] = obj[key]
         }
       }
     }
